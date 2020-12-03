@@ -272,7 +272,8 @@ const unwrapArgs = function (sender: electron.WebContents, frameId: [number, num
           let succeed = false;
           if (!sender.isDestroyed()) {
             try {
-              succeed = sender._sendToFrameInternal(frameId, IPC_MESSAGES.RENDERER_CALLBACK, contextId, meta.id, valueToMeta(sender, contextId, args));
+              sender._sendToFrameInternal(frameId, IPC_MESSAGES.RENDERER_CALLBACK, contextId, meta.id, valueToMeta(sender, contextId, args));
+              succeed = true;
             } catch (error) {
               console.warn(`_sendToFrameInternal() failed: ${error}`);
             }
